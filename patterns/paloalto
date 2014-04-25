@@ -1,0 +1,11 @@
+HEXNUM [0-9A-F]*
+UPWORD [A-Z]*
+LOWORD [a-z]*
+ULWORD [A-Za-z]*
+KEBABCASE [a-z-]*
+ALPHANUM [a-zA-Z0-9_./-]*
+PANDATE %{YEAR}/%{MONTHNUM}/%{MONTHDAY} %{HOUR}:%{MINUTE}:%{SECOND}
+PALOALTO %{SYSLOGTIMESTAMP} %{SYSLOGHOST:fwfqdn} 1,%{PANDATE:timestamp},%{HEXNUM},%{UPWORD:context}
+PALOALTOCONFIG %{NUMBER},%{NUMBER},%{PANDATE},%{IPV4:srcip},,%{LOWORD:action},%{LOWORD:user},%{ULWORD:sourceapp},%{ULWORD:result},%{DATA:resultmsg},%{NUMBER},%{DATA}
+PALOALTOSYSTEM %{LOWORD:element},%{NUMBER},%{PANDATE},,%{KEBABCASE:error},,%{NUMBER},%{NUMBER},%{LOWORD:errtype},%{LOWORD:criticity},%{DATA:errmsg},%{NUMBER},%{DATA}
+PALOALTOTHREAT %{LOWORD:threattype},%{NUMBER},%{PANDATE},%{IPV4:srcip},%{IPV4:dstip},%{IPV4},%{IPV4},%{DATA:rule},%{DATA:from_user},%{DATA:to_user},%{KEBABCASE:app},%{ALPHANUM},%{ALPHANUM:from},%{ALPHANUM:to},%{ALPHANUM:iface_in},%{ALPHANUM:iface_out},%{DATA},%{PANDATE},%{NUMBER},%{NUMBER},%{NUMBER:srcport},%{NUMBER:dstport},%{NUMBER},%{NUMBER},%{DATA},%{LOWORD:proto},%{KEBABCASE:action},%{DATA:file},%{DATA:threatdesc},%{LOWORD},%{LOWORD:criticity},%{KEBABCASE:direction},%{NUMBER},%{DATA},%{DATA:from_country},%{DATA:to_country},%{NUMBER},
